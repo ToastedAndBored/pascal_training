@@ -6,22 +6,34 @@ type
     next: itemp;
   end;
 var
-  first, tmp: itemp;
-  n: integer;
+  first, last,tmp: itemp;
+  n,i: integer;
 begin
   first := nil;
+  last := nil;
   while not SeekEOF do
   begin
     read(n);
-    new(tmp);
-    tmp^.data := n;
-    tmp^.next := first;
-    first := tmp;
+    if first = nil then
+    begin
+      new(first);
+      last := first
+    end
+    else
+    begin
+      new(last^.next);
+      last := last^.next
+    end;
+    last^.data := n;
+    last^.next := nil;
   end;
-  //tmp := first;
-  while tmp <> nil do
+  for i := 1 to 2 do
   begin
-    writeln(tmp^.data);
-    tmp := tmp^.next;
-  end
+    tmp := first;
+    while tmp <> nil do
+    begin
+      writeln(tmp^.data);
+      tmp := tmp^.next;
+    end;
+  end;
 end.
