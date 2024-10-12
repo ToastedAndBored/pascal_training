@@ -16,7 +16,7 @@ begin
   deque.last := nil;
 end;
 
-procedure LongDequePushFront(var deque: LongDeque; n: longint);
+procedure LongDequePushBack(var deque: LongDeque; n: longint);
 var
   tmp: LongItem2p;
 begin
@@ -31,7 +31,7 @@ begin
   deque.first := tmp;
 end;
 
-procedure LongDequePushBack(var deque: LongDeque; n: longint);
+procedure LongDequePushFront(var deque: LongDeque; n: longint);
 var
   tmp: LongItem2p;
 begin
@@ -96,7 +96,7 @@ begin
   while not SeekEof do
   begin
     read(n);
-    LongDequePushBack(deq, n);
+    LongDequePushFront(deq, n);
   end;
   while not LongDequeIsEmpty(deq) do
   begin
